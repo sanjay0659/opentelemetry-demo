@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    environment{
+        IMAGE_TAG = "${GIT_COMMIT.taken(2)}"
+    }
+    stages{
+        stage('docker login'){
+            steps{
+                sh 'docker login -u botadmin -p Gangadhar@99'
+                echo "success"
+            }
+        }
+        stage('docker image build'){
+            steps{
+                sh "docker build -t botadmin/project2:${IMAGE_TAG}"
+                echo "success"
+            }
+        }
+        stage('docker image push'){
+            steps{
+                sh "docker push botadmin/project2:${IMAGE_TAG}"
+                echo "success"
+            }
+        }
+    }
+}
