@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment{
-        IMAGE_TAG = "${GIT_COMMIT.taken(2)}"
+        IMAGE_TAG = "${GIT_COMMIT.tak(2)}"
     }
     stages{
         stage('docker login'){
