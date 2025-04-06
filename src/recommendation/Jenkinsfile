@@ -12,7 +12,7 @@ pipeline {
         }
         stage('docker image build'){
             steps{
-                sh "docker build -t botadmin/project2:${IMAGE_TAG} ."
+                sh "docker build -t botadmin/project2:${IMAGE_TAG} ./src/recommendation"
                 echo "success"
             }
         }
