@@ -16,7 +16,7 @@ FROM eclipse-temurin:21-jre AS publisher
 
 WORKDIR /usr/local/apps
 
-COPY --from-builder /usr/local/app ./
+COPY --from=builder /usr/local/app ./
 
 ENV ADD_PORT 9099
 
