@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    withCredentials([UsernamePassword(CredentialsId:'docker_creds' , usernameVariable:'username' , passwordVariable:'password' )])
+    withCredentials([UsernamePassword(CredentialsId:'docker_creds', usernameVariable:'username', passwordVariable:'password')])
     environment{
         IMAGE_TAG="{GIT_COMMIT.take(2)}"         
     }
