@@ -1,11 +1,13 @@
 pipeline {
     agent any
-    withCredentials([UsernamePassword(CredentialsId:'docker_creds', usernameVariable:'username', passwordVariable:'password')])
     environment{
         IMAGE_TAG="{GIT_COMMIT.take(2)}"         
     }
     stages{
         stage('Docker login'){
+            steps{
+                withCredentials([UsernamePassword(CredentialsId:'docker_creds', usernameVariable:'username', passwordVariable:'password')])
+            }
             steps{
                 sh 'echo ${password} | docker login -u ${username} --password-stdin'
             }
@@ -15,7 +17,7 @@ pipeline {
                 sh "docker build -t botadmin/opentelemetry/ad:${IMAGE_TAG} ./src/ad/"
             }
         }
-        stage('docekr push'){
+        stage('docker push'){
             steps{
                  sh  "docker push botadmin/opentelemetry/ad:${IMAGE_TAG}"
             }
