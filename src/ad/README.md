@@ -11,7 +11,7 @@ To build Ad Service, run:
 
 ```sh
 ./gradlew installDist
-```
+``` 
 
 It will create an executable script
 `src/ad/build/install/oteldemo/bin/Ad`.
