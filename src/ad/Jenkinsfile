@@ -13,13 +13,15 @@ pipeline {
                         passwordVariable: 'password'
                     )]) {
                         sh 'echo "$password" | docker login -u "$username" --password-stdin'
+
+                        sh 'pwd'
                     }
                 }
             }
         }
         stage('docker build'){
             steps {
-                sh "docker build -t botadmin/opentelemetry/ad:${IMAGE_TAG} ./src/ad/"
+                sh "docker build -f src/ad/Dockerfile -t botadmin/opentelemetry/ad:${IMAGE_TAG} ."
             }
         }
         stage('docker push'){
