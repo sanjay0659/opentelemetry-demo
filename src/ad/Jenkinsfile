@@ -4,12 +4,17 @@ pipeline {
         IMAGE_TAG="{GIT_COMMIT.take(2)}"         
     }
     stages{
-        stage('Docker login'){
-            steps{
-                withCredentials([UsernamePassword(CredentialsId:'docker_creds', usernameVariable:'username', passwordVariable:'password')])
-            }
-            steps{
-                sh 'echo ${password} | docker login -u ${username} --password-stdin'
+        stage('Dockerlogin'){
+             steps {
+                script {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'docker_creds',
+                        usernameVariable: 'username',
+                        passwordVariable: 'password'
+                    )]) {
+                        sh 'echo "$password" | docker login -u "$username" --password-stdin'
+                    }
+                }
             }
         }
         stage('docker build'){
