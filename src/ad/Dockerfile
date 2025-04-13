@@ -14,7 +14,7 @@ RUN ./gradlew installDist -PprotoSourceDir=./proto
 
 FROM eclipse-temurin:21-jre AS publisher
 
-WORKDIR /usr/local/apps ./
+WORKDIR /usr/local/apps
 
 COPY --from-builder /usr/local/app ./
 

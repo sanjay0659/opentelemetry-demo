@@ -18,7 +18,7 @@ pipeline {
             }
         }
         stage('docker build'){
-            steps{
+            steps {
                 sh "docker build -t botadmin/opentelemetry/ad:${IMAGE_TAG} ./src/ad/"
             }
         }
