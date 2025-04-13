@@ -18,6 +18,6 @@ WORKDIR /usr/local/apps
 
 COPY --from=builder /usr/local/app ./
 
-ENV ADD_PORT=9099s
+ENV ADD_PORT=9099
 
 ENTRYPOINT [ "./build/install/opentelemetry-demo-ad/bin/Ad" ]
